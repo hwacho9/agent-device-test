@@ -34,7 +34,9 @@ struct LoginScreen: View {
                 .textFieldStyle(.roundedBorder).accessibilityIdentifier("login.password").accessibilityLabel("Password")
             if let error { Text(error).foregroundStyle(.red).accessibilityIdentifier("login.error") }
             Button(action: onLogin) { Text("Login").frame(maxWidth: .infinity) }
-                .buttonStyle(.borderedProminent).controlSize(.large).accessibilityIdentifier("login.submit")
+                .buttonStyle(.borderedProminent).controlSize(.large)
+                .tint(Color(red: 37.0 / 255.0, green: 99.0 / 255.0, blue: 235.0 / 255.0))
+                .accessibilityIdentifier("login.submit")
             Text("Demo account: demo@example.com").font(.footnote).foregroundStyle(.secondary)
         }
     }
