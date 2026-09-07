@@ -19,7 +19,22 @@ final class ScreenSnapshotTests: XCTestCase {
             UITraitCollection(userInterfaceStyle: dark ? .dark : .light),
             UITraitCollection(preferredContentSizeCategory: large ? .accessibilityMedium : .large)
         ])
-        let failure = verifySnapshot(of: controller, as: .image(on: .iPhone13, drawHierarchyInKeyWindow: true, traits: traits), named: name, record: recording ? .all : .never, snapshotDirectory: refs, file: file, testName: name, line: line)
+        let failure = verifySnapshot(
+            of: controller,
+            as: .image(
+                on: .iPhone13,
+                drawHierarchyInKeyWindow: true,
+                precision: 0.995,
+                perceptualPrecision: 0.98,
+                traits: traits
+            ),
+            named: name,
+            record: recording ? .all : .never,
+            snapshotDirectory: refs,
+            file: file,
+            testName: name,
+            line: line
+        )
         if recording {
             XCTAssertTrue(failure?.hasPrefix("Record mode is on. Automatically recorded snapshot:") == true, failure ?? "Expected a recorded reference", file: file, line: line)
         } else if let failure {

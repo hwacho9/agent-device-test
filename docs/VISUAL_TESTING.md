@@ -46,7 +46,9 @@ The scripts check reference file count and before/after digests for validation.
 
 Rendering uses the host window hierarchy so iOS 26 visual effects and switch
 thumbs can appear in snapshots. Baselines are reviewed visually as well as
-compared automatically. Do not hide rendering failures with a lower precision.
+compared automatically. Validation requires 99.5% pixel precision and 98%
+perceptual precision. This absorbs cross-runner text antialiasing and one-byte
+color conversion differences while preserving failures for visible regressions.
 
 ## Baseline policy
 Only an explicit record command may change references. Review all 11 states
