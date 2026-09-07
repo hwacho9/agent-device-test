@@ -28,6 +28,15 @@ HTML, APK, `.app`, full build trees, DerivedData, and full xcresult bundles are
 excluded. Artifact upload is post-processing and cannot convert a failed core step
 to PASS.
 
+After both jobs finish, `pr-evidence` downloads the two artifacts and uploads every
+existing final PNG/MP4 to the run-specific prerelease
+`pr-<number>-mobile-e2e-evidence-<run-id>-attempt-<attempt>`. The marker comment
+embeds the PNG URLs and MP4 open/download links. Once the marker is published, the
+job attempts to delete older evidence releases and tags for the same PR; cleanup
+failure is reported as a warning. The job uses the ephemeral `github.token` and no
+stored user credential. Upload failure creates an artifact-link fallback comment
+and fails the publishing check without changing a platform verdict.
+
 Local reproduction:
 
 ```bash

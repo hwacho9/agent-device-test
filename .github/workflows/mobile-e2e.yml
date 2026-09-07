@@ -132,7 +132,7 @@ jobs:
           github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-24.04
     permissions:
-      contents: read
+      contents: write
       issues: write
       pull-requests: write
     steps:
@@ -153,9 +153,16 @@ jobs:
           name: ios-e2e-evidence
           path: artifacts/downloaded/ios
 
-      - name: Generate and publish stable-marker summary
+      - name: Upload PNG and MP4 release assets and publish stable-marker summary
         env:
           GH_TOKEN: ${{ github.token }}
+          EXPECTED_PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_MEDIA_MODE: release
+        run: bash scripts/publish-pr-evidence.sh "${{ github.event.pull_request.number }}"
+
+      - name: Write job summary
+        if: always()
         run: |
-          bash scripts/publish-pr-evidence.sh "${{ github.event.pull_request.number }}"
-          cat artifacts/pr/pr-summary.md >> "$GITHUB_STEP_SUMMARY"
+          if [[ -s artifacts/pr/pr-summary.md ]]; then
+            cat artifacts/pr/pr-summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi

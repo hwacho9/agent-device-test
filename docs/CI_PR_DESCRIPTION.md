@@ -24,11 +24,12 @@ five-day workflow artifacts contain JSON, representative/full PNG evidence, MP4,
 bounded logs, and test results; they exclude HTML, APK, `.app`, DerivedData, and
 complete xcresult bundles.
 
-For same-repository PRs, the evidence job gets minimal comment permissions and
-updates one bot-owned marker comment. Fork PRs get read-only build/test and artifact
-upload only. Direct PNG/MP4 comment attachment is reported as unavailable because
-the installed GitHub CLI and supported issue-comment API have no binary upload
-operation; the files remain in Actions artifacts. Publishing status never changes
+For same-repository PRs, the evidence job uploads each existing final PNG and MP4
+to a run-specific GitHub prerelease and embeds the PNG previews and MP4 links in one
+stable-marker report. After publishing the marker, it attempts to remove older
+evidence releases and tags for that PR. It uses an ephemeral repository token and
+no stored user credential. Fork PRs get read-only build/test and artifact upload
+only. A publishing failure falls back to Actions artifact links and never changes
 the test verdict.
 
 Known limitations: Android emulator and iOS runner behavior still depend on hosted

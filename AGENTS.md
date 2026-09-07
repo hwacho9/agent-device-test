@@ -16,7 +16,11 @@
 - CI validates visual baselines and must never run either baseline update mode.
 - CI jobs are independent, always collect bounded evidence, and keep HTML and app
   binaries out of workflow artifacts.
-- PR evidence may update only the current bot/user marker comment on same-repository
-  PRs. Fork PRs receive no write token, comment, or attachment operation.
+- PR evidence may update only the current bot/user marker comment on a
+  same-repository PR. CI uploads allowlisted PNG/MP4 in a run-specific GitHub
+  prerelease and attempts to remove older evidence releases for that PR after the
+  marker is published; local OAuth publication may use GitHub CLI 2.99+ direct
+  attachments. Fork PRs receive no write token, secret, comment, or media upload
+  operation.
 - Do not replace stable accessibility selectors with ephemeral `@eN` references.
 - Artifact upload or report publication never changes a failed test to PASS.
