@@ -25,7 +25,6 @@ final class ScreenSnapshotTests: XCTestCase {
                 on: .iPhone13,
                 drawHierarchyInKeyWindow: true,
                 precision: 0.995,
-                perceptualPrecision: 0.98,
                 traits: traits
             ),
             named: name,
