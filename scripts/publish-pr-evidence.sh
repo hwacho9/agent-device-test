@@ -17,7 +17,11 @@ printf '%s\n' \
     'iOS PNG: NOT ATTACHED (CLI/API file upload unsupported; workflow artifact fallback)' \
     'iOS MP4: NOT ATTACHED (CLI/API file upload unsupported; workflow artifact fallback)' \
     'HTML: NOT ATTACHED' > artifacts/pr/attachment-status.txt
-login="$(gh api user --jq .login)"
+if [[ "${GITHUB_ACTIONS:-}" == true ]]; then
+    login='github-actions[bot]'
+else
+    login="$(gh api user --jq .login)"
+fi
 comments="$(mktemp)"
 payload="$(mktemp)"
 trap 'rm -f "$comments" "$payload"' EXIT

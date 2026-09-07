@@ -52,7 +52,7 @@ jobs:
           target: google_apis
           arch: x86_64
           avd-name: AgentDeviceE2EDemo_CI_API35
-          port: 5554
+          emulator-port: 5554
           emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim -camera-back none -gpu swiftshader_indirect
           disable-animations: true
           emulator-boot-timeout: 900
