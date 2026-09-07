@@ -1,0 +1,33 @@
+# Reviewed from an actually successful agent-device 0.20.10 exploration.
+# Final full-snapshot assertions (including absence of login.error) are enforced by scripts/replay-e2e.py.
+context platform=android device="AgentDeviceE2EDemo API35" kind=emulator theme=unknown
+open "com.example.agentdevicee2edemo"
+wait "id=\"login.email\""
+# agent-device:target-v1 {"id":"login.email","role":"edittext","ancestry":[{"role":"scrollview"}],"sibling":0,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":74,"y":707,"width":932,"height":168},"verification":"verified"}
+fill "id=\"login.email\"" "demo@example.com"
+# agent-device:target-v1 {"id":"login.password","role":"edittext","ancestry":[{"role":"scrollview"}],"sibling":1,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":74,"y":928,"width":932,"height":168},"verification":"verified"}
+fill "id=\"login.password\"" "demo1234"
+# agent-device:target-v1 {"id":"login.submit","role":"view","ancestry":[{"role":"scrollview"}],"sibling":2,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":74,"y":1150,"width":932,"height":126},"verification":"verified"}
+press "id=\"login.submit\""
+# agent-device:target-v1 {"id":"home.title","role":"textview","label":"Hello, Demo User","ancestry":[{"role":"scrollview"},{"role":"view"},{"role":"view"},{"role":"composeview"},{"role":"framelayout"},{"role":"framelayout"},{"role":"framelayout"}],"sibling":2,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":74,"y":433,"width":644,"height":105},"verification":"verified"}
+wait "id=\"home.title\""
+# agent-device:target-v1 {"id":"home.profile","role":"view","ancestry":[{"role":"scrollview"}],"sibling":0,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":74,"y":708,"width":932,"height":126},"verification":"verified"}
+press "id=\"home.profile\""
+wait "id=\"profile.title\""
+# agent-device:target-v1 {"id":"profile.title","role":"textview","label":"Profile","ancestry":[{"role":"scrollview"},{"role":"view"},{"role":"view"},{"role":"composeview"},{"role":"framelayout"},{"role":"framelayout"},{"role":"framelayout"}],"sibling":2,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":74,"y":433,"width":241,"height":105},"verification":"verified"}
+is "visible" "id=\"profile.title\""
+# agent-device:target-v1 {"id":"profile.name","role":"textview","label":"Demo User","ancestry":[{"role":"scrollview"},{"role":"view"},{"role":"view"},{"role":"composeview"},{"role":"framelayout"},{"role":"framelayout"},{"role":"framelayout"}],"sibling":3,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":74,"y":591,"width":279,"height":74},"verification":"verified"}
+is "visible" "id=\"profile.name\""
+# agent-device:target-v1 {"id":"profile.reminder.state","role":"textview","label":"Off","ancestry":[{"role":"scrollview"},{"role":"view"},{"role":"view"},{"role":"composeview"},{"role":"framelayout"},{"role":"framelayout"},{"role":"framelayout"}],"sibling":5,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":784,"y":755,"width":85,"height":53},"verification":"verified"}
+is "text" "id=\"profile.reminder.state\"" "Off"
+# agent-device:target-v1 {"id":"profile.reminder","role":"view","ancestry":[{"role":"scrollview"}],"sibling":0,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":869,"y":718,"width":137,"height":126},"verification":"verified"}
+press "id=\"profile.reminder\""
+# agent-device:target-v1 {"id":"profile.reminder.state","role":"textview","label":"On","ancestry":[{"role":"scrollview"},{"role":"view"},{"role":"view"},{"role":"composeview"},{"role":"framelayout"},{"role":"framelayout"},{"role":"framelayout"}],"sibling":5,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":790,"y":755,"width":79,"height":53},"verification":"verified"}
+is "text" "id=\"profile.reminder.state\"" "On"
+# agent-device:target-v1 {"id":"profile.save","role":"view","ancestry":[{"role":"scrollview"}],"sibling":1,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":74,"y":898,"width":932,"height":126},"verification":"verified"}
+press "id=\"profile.save\""
+# agent-device:target-v1 {"id":"profile.saved","role":"textview","label":"Saved","ancestry":[{"role":"scrollview"},{"role":"view"},{"role":"view"},{"role":"composeview"},{"role":"framelayout"},{"role":"framelayout"},{"role":"framelayout"}],"sibling":8,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":74,"y":1076,"width":119,"height":63},"verification":"verified"}
+wait "id=\"profile.saved\""
+# agent-device:target-v1 {"id":"profile.saved","role":"textview","label":"Saved","ancestry":[{"role":"scrollview"},{"role":"view"},{"role":"view"},{"role":"composeview"},{"role":"framelayout"},{"role":"framelayout"},{"role":"framelayout"}],"sibling":8,"viewportOrder":0,"scrollRegion":{"role":"scrollview"},"rect":{"x":74,"y":1076,"width":119,"height":63},"verification":"verified"}
+wait "id=\"profile.saved\""
+close

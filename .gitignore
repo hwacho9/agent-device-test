@@ -1,0 +1,14 @@
+.gradle/
+.kotlin/
+**/build/
+.tools/
+local.properties
+node_modules/
+artifacts/**
+!artifacts/presentation/
+!artifacts/presentation/README.md
+.DS_Store
+**/xcuserdata/
+*.xcuserstate
+__pycache__/
+*.pyc

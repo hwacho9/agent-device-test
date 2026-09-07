@@ -1,0 +1,11 @@
+# AgentDeviceE2EDemo
+- Execute real commands before claiming success. Report unexecuted checks as NOT RUN.
+- Do not guess paths, Gradle tasks, schemes, identifiers, or agent-device options.
+- Follow gates A, B, C, D, visual tests, then agent-device integration. Stop on gate failure and diagnose it.
+- Never update visual baselines during validation or delete assertions to pass tests.
+- Prefer bounded state-based waits. Do not use production credentials.
+- Verify final Android APK and iOS .app; framework compilation alone is not iOS app success.
+- Keep failure screenshots, logs, and paths. Never fabricate evidence.
+- Keep shared business logic in commonMain; Compose Android UI and SwiftUI iOS UI are separate.
+- Use direct Xcode integration only; no CocoaPods.
+- Do not install or operate OBS.

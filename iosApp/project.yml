@@ -1,0 +1,78 @@
+name: AgentDeviceE2EDemo
+options:
+  bundleIdPrefix: com.example.agentdevicee2edemo
+  deploymentTarget:
+    iOS: '18.0'
+settings:
+  base:
+    SWIFT_VERSION: '5.0'
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+    FRAMEWORK_SEARCH_PATHS: '$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)'
+    OTHER_LDFLAGS: '$(inherited) -framework Shared'
+packages:
+  SnapshotTesting:
+    url: https://github.com/pointfreeco/swift-snapshot-testing
+    exactVersion: 1.19.4
+targets:
+  AgentDeviceE2EDemo:
+    type: application
+    platform: iOS
+    sources: [AgentDeviceE2EDemo]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.agentdevicee2edemo.ios
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        TARGETED_DEVICE_FAMILY: '1,2'
+        CODE_SIGN_STYLE: Automatic
+    preBuildScripts:
+      - name: Build and embed Shared framework
+        basedOnDependencyAnalysis: false
+        script: |
+          set -euo pipefail
+          cd "$SRCROOT/.."
+          source scripts/env.sh
+          ./gradlew :shared:embedAndSignAppleFrameworkForXcode
+        shell: /bin/bash
+  AgentDeviceE2EDemoUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [AgentDeviceE2EDemoUITests]
+    dependencies:
+      - target: AgentDeviceE2EDemo
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.agentdevicee2edemo.ios.uitests
+        GENERATE_INFOPLIST_FILE: YES
+        OTHER_LDFLAGS: ""
+        TEST_TARGET_NAME: AgentDeviceE2EDemo
+  AgentDeviceE2EDemoSnapshotTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: AgentDeviceE2EDemoSnapshotTests
+        excludes: ["__Snapshots__"]
+    dependencies:
+      - target: AgentDeviceE2EDemo
+      - package: SnapshotTesting
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.agentdevicee2edemo.ios.snapshots
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  AgentDeviceE2EDemo:
+    build:
+      targets:
+        AgentDeviceE2EDemo: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - AgentDeviceE2EDemoUITests
+        - AgentDeviceE2EDemoSnapshotTests
+      environmentVariables:
+        SNAPSHOT_RECORD: "$(SNAPSHOT_RECORD)"
+        TZ: UTC
+        LANG: en_US.UTF-8

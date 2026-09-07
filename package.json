@@ -1,0 +1,12 @@
+{
+  "name": "agent-device-e2e-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Android and iOS deterministic automation demo",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "devDependencies": {
+    "agent-device": "0.20.10"
+  }
+}
