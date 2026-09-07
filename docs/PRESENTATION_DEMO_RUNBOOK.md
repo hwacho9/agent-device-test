@@ -1,5 +1,15 @@
 # Presentation demo
 
+Generate and check the offline evidence dashboard before presenting:
+
+```bash
+./scripts/generate-local-report.sh
+./scripts/serve-local-report.sh
+```
+
+Open `http://127.0.0.1:8080` and confirm both JSON timestamps and embedded backup
+videos. This HTML remains local and is never used as PR or CI evidence.
+
 ## Before the event
 1. Run `bash scripts/run-all-local.sh` and review each platform result separately.
 2. Run `bash scripts/record-android-clean.sh` and `bash scripts/record-ios-clean.sh`.
