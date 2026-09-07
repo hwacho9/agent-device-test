@@ -7,4 +7,9 @@ mkdir -p artifacts/android/build
 apk="$ROOT/androidApp/build/outputs/apk/debug/androidApp-debug.apk"
 test -s "$apk"
 cp "$apk" artifacts/android/build/
-stat -f '%N %z bytes' "$apk"
+python3 - "$apk" <<'PY'
+from pathlib import Path
+import sys
+path = Path(sys.argv[1])
+print(f"{path} {path.stat().st_size} bytes")
+PY

@@ -6,7 +6,7 @@
 - macOS 26.4.1, Apple Silicon arm64.
 - Android Studio AI-261.26222.65.2613.16025427 (2026.1.3).
 - Project JDK: Temurin 17.0.12; default shell still uses JDK 11.
-- SDK: /Users/chosunghwa/Library/Android/sdk; Android API 35.
+- SDK: `$HOME/Library/Android/sdk`; Android API 35.
 - Android Emulator 37.1.11; adb 37.0.1.
 - Xcode 26.6 (17F113); iOS 26.5 runtime installed.
 - Default Node 22.9.0 is insufficient; scripts select existing bundled Node 24.19.0.

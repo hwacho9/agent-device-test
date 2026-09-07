@@ -76,6 +76,28 @@ Builds, reports, logs and videos belong under `artifacts/android` and
 `artifacts/ios`. Runtime evidence is ignored by Git. Visual reference generation
 and validation are separate operations; validation must not modify references.
 
+Generate the offline, local-only evidence dashboard after platform result JSON
+exists:
+
+```sh
+bash scripts/run-platform-ci.sh android
+bash scripts/run-platform-ci.sh ios
+./scripts/generate-local-report.sh
+./scripts/serve-local-report.sh
+```
+
+The dashboard is served at `http://127.0.0.1:8080`. It is ignored by Git and is
+never uploaded by CI. The pull-request workflow runs Android and iOS independently,
+keeps short-lived PNG/MP4/log/JSON artifacts, publishes the final PNG and MP4 in a
+run-specific GitHub prerelease, and embeds their previews/links in one marker
+comment. After a successful publication it removes older evidence releases for the
+same PR on a best-effort basis. Fork PRs receive read-only build/test execution and
+no comment or media upload operation.
+
+[Local HTML report](docs/LOCAL_HTML_REPORT.md) · [CI runbook](docs/CI_RUNBOOK.md) ·
+[PR evidence](docs/PR_EVIDENCE.md) · [GitHub setup](docs/GITHUB_SETUP.md) ·
+[CI security](docs/CI_SECURITY.md)
+
 [Scenario](docs/E2E_SCENARIO.md) · [OBS](docs/OBS_RECORDING_RUNBOOK.md) ·
 [Troubleshooting](docs/TROUBLESHOOTING.md)
 

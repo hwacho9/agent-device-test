@@ -39,7 +39,11 @@ import com.example.agentdevicee2edemo.shared.ProfileState
         OutlinedTextField(email, onEmail, Modifier.fillMaxWidth().testTag("login.email"), label = { Text("Email") }, singleLine = true, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email))
         OutlinedTextField(password, onPassword, Modifier.fillMaxWidth().testTag("login.password"), label = { Text("Password") }, singleLine = true, visualTransformation = PasswordVisualTransformation(), keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password))
         if (error != null) Text(error, Modifier.testTag("login.error").semantics { liveRegion = LiveRegionMode.Polite }, color = MaterialTheme.colorScheme.error)
-        Button(onLogin, Modifier.fillMaxWidth().testTag("login.submit")) { Text("Login") }
+        Button(
+            onLogin,
+            Modifier.fillMaxWidth().testTag("login.submit"),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2563EB))
+        ) { Text("Login") }
         Text("Demo account: demo@example.com", style = MaterialTheme.typography.bodySmall)
     }
 }

@@ -22,7 +22,7 @@
 | agent-device | 로컬 npm 0.20.10 |
 | Visual libraries | Compose Screenshot 0.0.1-alpha15 / SnapshotTesting 1.19.4 |
 
-SDK 경로: `/Users/chosunghwa/Library/Android/sdk`.
+SDK 경로: `$HOME/Library/Android/sdk`.
 iOS UDID: `2D1249E5-37FA-4800-A45E-9A7D1ABD651F`.
 환경 원본: [check.log](../artifacts/environment/check.log).
 

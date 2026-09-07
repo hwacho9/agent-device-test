@@ -7,6 +7,17 @@ node_modules/
 artifacts/**
 !artifacts/presentation/
 !artifacts/presentation/README.md
+artifacts/local-report/
+artifacts/results/
+artifacts/**/runtime/
+artifacts/**/actual/
+artifacts/**/diff/
+*.mp4
+*.log
+*.xcresult
+*.apk
+*.app
+DerivedData/
 .DS_Store
 **/xcuserdata/
 *.xcuserstate
